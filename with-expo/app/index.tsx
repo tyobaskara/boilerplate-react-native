@@ -25,7 +25,9 @@ export default function Index() {
   if (!fontsLoaded) {
     return (
       <View style={styles.container}>
-        <Text style={styles.loadingText}>Loading fonts...</Text>
+        <Text style={styles.loadingText} testID="loading-text">
+          Loading fonts...
+        </Text>
       </View>
     );
   }

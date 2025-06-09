@@ -6,7 +6,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react-native/all',
-    'plugin:prettier/recommended',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'react', 'react-native', 'prettier'],
@@ -19,7 +19,7 @@ module.exports = {
   },
   env: {
     'react-native/react-native': true,
-    'jest': true,
+    jest: true,
   },
   rules: {
     'prettier/prettier': 'error',
@@ -38,4 +38,4 @@ module.exports = {
       version: 'detect',
     },
   },
-}; 
+};
