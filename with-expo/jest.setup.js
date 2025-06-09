@@ -7,15 +7,6 @@ jest.mock('react-native-reanimated', () => {
   return Reanimated;
 });
 
-jest.mock('expo-router', () => ({
-  useRouter: () => ({
-    push: jest.fn(),
-    replace: jest.fn(),
-    back: jest.fn(),
-  }),
-  useLocalSearchParams: () => ({}),
-}));
-
 jest.mock('expo-linking', () => ({
   createURL: jest.fn(),
 }));
@@ -41,4 +32,14 @@ jest.mock('react-native/Libraries/Animated/Animated', () => ({
   Image: jest.fn(),
   ScrollView: jest.fn(),
   FlatList: jest.fn(),
+}));
+
+// Mock expo-font
+jest.mock('expo-font', () => ({
+  useFonts: () => [true, null],
+}));
+
+// Mock expo-status-bar
+jest.mock('expo-status-bar', () => ({
+  StatusBar: 'StatusBar',
 }));

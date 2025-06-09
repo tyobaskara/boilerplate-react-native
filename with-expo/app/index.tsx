@@ -1,39 +1,9 @@
-import { Inter_400Regular, Inter_700Bold } from '@expo-google-fonts/inter';
-import { Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
-import { Raleway_400Regular, Raleway_700Bold } from '@expo-google-fonts/raleway';
-import { useFonts } from 'expo-font';
 import { Link } from 'expo-router';
-import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function Index() {
-  const [fontsLoaded, fontError] = useFonts({
-    Inter_400Regular,
-    Inter_700Bold,
-    Poppins_400Regular,
-    Poppins_700Bold,
-    Raleway_400Regular,
-    Raleway_700Bold,
-  });
-
-  useEffect(() => {
-    if (fontError) {
-      console.error('Font loading error:', fontError);
-    }
-  }, [fontError]);
-
-  if (!fontsLoaded) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.loadingText} testID="loading-text">
-          Loading fonts...
-        </Text>
-      </View>
-    );
-  }
-
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="container">
       <Text style={styles.bigText}>BIG TEXT</Text>
       <Text style={styles.redText}>RED TEXT</Text>
       <Text style={styles.italicText}>ITALIC TEXT</Text>
@@ -44,8 +14,12 @@ export default function Index() {
       <Text style={styles.poppinsBold}>Poppins Bold</Text>
       <Text style={styles.ralewayRegular}>Raleway Regular</Text>
       <Text style={styles.ralewayBold}>Raleway Bold</Text>
-      <Link href="/(tabs)">Go to tabs</Link>
-      <Link href={'/any' as any}>Go to Not Found Screen</Link>
+      <Link href="/(tabs)" testID="tabs-link">
+        Go to tabs
+      </Link>
+      <Link href={'/any' as any} testID="not-found-link">
+        Go to Not Found Screen
+      </Link>
     </View>
   );
 }

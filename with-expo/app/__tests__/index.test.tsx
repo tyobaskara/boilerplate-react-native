@@ -1,34 +1,29 @@
 import { render, screen } from '@testing-library/react-native';
-import { useFonts } from 'expo-font';
 import Index from '../index';
 
-// Mock expo-font
-jest.mock('expo-font', () => ({
-  useFonts: jest.fn(),
-}));
-
 describe('Index Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
+  it('should render the container', () => {
+    render(<Index />);
+    expect(screen.getByTestId('container')).toBeDefined();
   });
 
-  it('shows loading state when fonts are not loaded', () => {
-    (useFonts as jest.Mock).mockReturnValue([false, null]);
-
+  it('should render all text elements', () => {
     render(<Index />);
-    const loadingText = screen.getByTestId('loading-text');
-    expect(loadingText).toBeDefined();
+    expect(screen.getByText('BIG TEXT')).toBeDefined();
+    expect(screen.getByText('RED TEXT')).toBeDefined();
+    expect(screen.getByText('ITALIC TEXT')).toBeDefined();
+    expect(screen.getByText('Regular')).toBeDefined();
+    expect(screen.getByText('Inter Regular')).toBeDefined();
+    expect(screen.getByText('Inter Bold')).toBeDefined();
+    expect(screen.getByText('Poppins Regular')).toBeDefined();
+    expect(screen.getByText('Poppins Bold')).toBeDefined();
+    expect(screen.getByText('Raleway Regular')).toBeDefined();
+    expect(screen.getByText('Raleway Bold')).toBeDefined();
   });
 
-  it('shows error in console when font loading fails', () => {
-    const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
-    const mockError = new Error('Font loading failed');
-
-    (useFonts as jest.Mock).mockReturnValue([false, mockError]);
-
+  it('should render navigation links with correct testIDs', () => {
     render(<Index />);
-
-    expect(consoleSpy).toHaveBeenCalledWith('Font loading error:', mockError);
-    consoleSpy.mockRestore();
+    expect(screen.getByTestId('tabs-link')).toBeDefined();
+    expect(screen.getByTestId('not-found-link')).toBeDefined();
   });
 });
